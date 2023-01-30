@@ -1,0 +1,18 @@
+- hosts: gebze_verimor
+  remote_user: root
+
+  tasks:
+  - name: Copy file with owner and permissions
+    copy:
+      src: /home/nazli/server_config/peer_geb.conf
+      dest: /etc/asterisk/peer_geb.conf
+      owner: root
+      group: root
+      mode: '0644'
+
+
+  - replace:
+      path: /etc/asterisk/peer_geb.conf
+      regexp: '\[{{ inventory_hostname_short }}\]\n[^[]*'
+      replace: '' 
+
